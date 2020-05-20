@@ -6,7 +6,7 @@ class Crypto:
     private_key = None
 
     def generate_keys(self):
-        (public_key, private_key) = rsa.newkeys(512)
+        (public_key, private_key) = rsa.newkeys(1024)
         self.public_key = public_key
         self.private_key = private_key
 
