@@ -1,6 +1,6 @@
 from tkinter import Tk
 
-from src.windows import Login
+from src.screens import Login
 
 main_window = Tk()
 main_window.geometry('800x600')
