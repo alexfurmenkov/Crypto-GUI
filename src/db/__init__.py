@@ -1,5 +1,5 @@
-from .database import User, engine
-from .user_handler import session
+from .database import engine
+from .users import session, User
 
 __all__ = [
     'engine',
