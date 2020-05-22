@@ -8,7 +8,10 @@ import rsa  # Импорт библиотеки rsa
 Base = declarative_base()
 
 
-class User(Base):  # Создание класса User, который являетеся отображением таблицы users в БД
+class User(Base):
+    """
+    Класс User, который являетеся отображением таблицы users в БД
+    """
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)  # Создание атрибутов класса User, которые являютеся отображением
@@ -16,17 +19,31 @@ class User(Base):  # Создание класса User, который явля
     public_key = Column(String)
     private_key = Column(String)
 
-    def __init__(self, login, public_key, private_key):  # Метод вызывается каждый раз при создании объекта класса User
+    def __init__(self, login, public_key, private_key):
+        """
+        Метод, вызываемый каждый раз при создании объекта класса User
+        :param login: Логин
+        :param public_key: Путь к публичному ключу
+        :param private_key: Путь к приватному ключу
+        """
         self.login = login
         self.public_key = public_key
         self.private_key = private_key
 
-    def get_public_key(self):  # Метод, возвращающий публичный ключ объекта класса User
+    def get_public_key(self):
+        """
+        Метод, возвращающий публичный ключ объекта класса User
+        :return: объекта класса PublicKey
+        """
         with open(self.public_key, 'rb') as file:
             public_key = file.read()
             return rsa.PublicKey.load_pkcs1(keyfile=public_key)
 
-    def get_private_key(self):  # Метод, возвращающий приватный ключ объекта класса User
+    def get_private_key(self):
+        """
+        Метод, возвращающий приватный ключ объекта класса User
+        :return: объекта класса PrivateKey
+        """
         with open(self.private_key, 'rb') as file:
             private_key = file.read()
             return rsa.PrivateKey.load_pkcs1(keyfile=private_key)
